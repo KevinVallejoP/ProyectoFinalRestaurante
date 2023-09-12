@@ -13,7 +13,7 @@ const connection=mysql.createConnection({
 module.exports.hacerPedido = async (event) => {
   const pedido = querystring.parse(event["body"])
   await new Promise((resolve, reject) => {
-  const queryclient = "CALL insert_pedido(?,?,?,?,?);";
+  const queryclient = "CALL insert_pedidos(?,?,?,?,?);";
     connection.query(queryclient,[pedido.producto_id,pedido.cantidad_und,pedido.valorUnidad,pedido.valorTotal,pedido.cliente_id], (err, results) => {
       if (err) {
         reject(err);
