@@ -1,12 +1,13 @@
 'use strict';
+const aws=require('aws-sdk'); 
 const querystring = require("querystring")
 const mysql=require('mysql');
 const connection=mysql.createConnection({
-  host:'proyectofinal-jd-kevindavid.chaimywkeuxz.us-east-2.rds.amazonaws.com',
+  host:'proyecto-final-restaurante-dev-databasekevindavid-gmjksygs7xns.chaimywkeuxz.us-east-2.rds.amazonaws.com',
   user:'admin',
   port:'3306',
   password:'admin123',
-  database:'Pedidosrestaurante',
+  database:'restaurantebd',
 });
 
 module.exports.hacerPedido = async (event) => {
@@ -21,6 +22,35 @@ module.exports.hacerPedido = async (event) => {
       }
     });
   });
+  const messageBody = {
+    Cliente: pedido.cliente_id,
+    Producto: pedido.producto_id,
+    Cantidad: pedido.cantidad_und,
+    "Valor Total": pedido.valorTotal,
+  };
+   // Parámetros del mensaje
+   const params = {
+    MessageBody: JSON.stringify(messageBody),
+    QueueUrl: 'https://sqs.us-east-2.amazonaws.com/667168568942/order-queue',
+  };
+  await sqs.sendMessage(params).promise();
+  const paramsEmail = {
+    Source: "kevin.vallejo27635@ucaldas.edu.co", 
+    Destination: {
+      ToAddresses: [clienteEmail],
+    },
+    Message: {
+      Subject: {
+        Data: "Detalles del pedido",
+      },
+      Body: {
+        Text: {
+          Data: `Detalles del pedido:\n\nCliente: ${cliente_id}\nProducto: ${producto_id}\nValor unidad: ${valorUnidad}\nCantidad: ${pedido.cantidad_und}\nValor Total: ${pedido.valorTotal}`,
+        },
+      },
+    },
+  };
+  await ses.sendEmail(paramsEmail).promise();
   return {
     statusCode: 200,
     body: JSON.stringify(
