@@ -4,10 +4,16 @@ Antes de comenzar, asegúrate de tener instalados los siguientes requisitos en t
 
 - Node.js: Descárgalo e instálalo desde [nodejs.org](https://nodejs.org/).
 
-## Instalación
+Instala el Serverless en en el cmd
+npm install -g serverless
+
+Verifica la instalacion
+serverless --version
+
+Instalación del proyecto
 configurar y ejecutar el proyecto:
 
-**Clona el Repositorio**: 
+Clona el Repositorio**: 
 
    ```bash
    git clone https://github.com/tu-usuario/tu-proyecto.git
