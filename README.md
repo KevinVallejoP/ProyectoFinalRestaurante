@@ -1,6 +1,19 @@
 # ProyectoFinalRestaurante
-Proyecto final de Computación en la nube Kevin Vallejo y David Alarcon.
+Proyecto para implementar el Serverless como Framework para facilitar el desarrollo de el Software de manera mas rapida y eficiente
+Antes de comenzar, asegúrate de tener instalados los siguientes requisitos en tu sistema:
 
-El archivo de serverless.yml esta complementado con la estructura basica del proyecto, con la region donde se trabajo el proyecto, funciones lambda, y endpoint de apigetway.
+- Node.js: Descárgalo e instálalo desde [nodejs.org](https://nodejs.org/).
 
-El archivo de handler.js, tiene las funciones hacerPedido y obtenerPedido implementadas en el proyecto, hacerPedido es la encaragda de recibir datos de un pedido y ser insertados en la base de datos y la otra es decir obtenerPedido se encargara de poder mostar los datos del pedido por medio del id.
+## Instalación
+configurar y ejecutar el proyecto:
+
+**Clona el Repositorio**: 
+
+   ```bash
+   git clone https://github.com/tu-usuario/tu-proyecto.git
+
+Utiliza npm (Node Package Manager) para instalar las dependencias necesarias.
+npm install
+
+Utiliza este comando para instalar el sdk dentro del cmd del proyecto
+aws-sdk --save
